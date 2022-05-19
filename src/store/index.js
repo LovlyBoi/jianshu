@@ -1,13 +1,14 @@
 import { createStore } from 'vuex'
+import { getCache } from '@/utils/cahe'
 
 export default createStore({
   state: {
-    navActiveIdx: 1,
+    isLogin: !!getCache('token'),
   },
   getters: {},
   mutations: {
-    changeNavActive(state, idx) {
-      state.navActiveIdx = idx
+    changeLoginState(state, loginState) {
+      state.isLogin = loginState
     },
   },
   actions: {},

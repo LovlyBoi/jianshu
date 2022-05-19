@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import store from '../store'
 import MainView from '../views/MainView.vue'
 
 const routes = [
@@ -28,6 +27,21 @@ const routes = [
     name: 'message',
     component: () => import('@/views/MessageView.vue'),
   },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import('@/views/UserView.vue'),
+    children: [
+      {
+        path: 'login',
+        component: () => import('@/views/LoginView.vue'),
+      },
+      {
+        path: 'register',
+        component: () => import('@/views/RegisterView.vue'),
+      },
+    ],
+  },
 ]
 
 const router = createRouter({
@@ -36,24 +50,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  switch (to.fullPath) {
-    case '/':
-      store.commit('changeNavActive', 1)
-      break
-    case '/follow':
-      store.commit('changeNavActive', 2)
-      break
-    case '/member':
-      store.commit('changeNavActive', 3)
-      break
-    case '/it':
-      store.commit('changeNavActive', 4)
-      break
-    case '/message':
-      store.commit('changeNavActive', 5)
-      break
-    default:
-      break
+  if (to.fullPath === '/user') {
+    return '/user/login'
   }
 })
 

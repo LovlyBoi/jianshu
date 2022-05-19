@@ -11,7 +11,6 @@
         <router-link
           class="find"
           to="/"
-          :class="{ active: navActiveIdx === 1 }"
           @click="handleNavChange(1)"
         >
           <span class="iconfont icon-faxian"></span>
@@ -20,7 +19,6 @@
         <router-link
           class="focus"
           to="/follow"
-          :class="{ active: navActiveIdx === 2 }"
           @click="handleNavChange(2)"
         >
           <span class="iconfont icon-shu"></span>
@@ -29,7 +27,6 @@
         <router-link
           class="find"
           to="/member"
-          :class="{ active: navActiveIdx === 3 }"
           @click="handleNavChange(3)"
         >
           <span class="iconfont icon-huiyuan"></span>
@@ -38,7 +35,6 @@
         <router-link
           class="find"
           to="/it"
-          :class="{ active: navActiveIdx === 4 }"
           @click="handleNavChange(4)"
         >
           <span class="iconfont icon-daima"></span>
@@ -47,7 +43,6 @@
         <router-link
           class="find"
           to="/message"
-          :class="{ active: navActiveIdx === 5 }"
           @click="handleNavChange(5)"
         >
           <span class="iconfont icon-tixing"></span>
@@ -57,10 +52,13 @@
       <div class="theme-btn" @click="changeTheme">
         {{ Theme.themeState.value === 'light' ? '深色主题' : '浅色主题' }}
       </div>
-      <div class="avactor">
+      <div class="avactor" v-if="isLogin">
         <div class="avactor-container">
           <img :src="avactor" alt="用户头像" />
         </div>
+      </div>
+      <div class="login-btn" v-else>
+        <router-link to="/user/login">登录</router-link>
       </div>
       <div class="write-article-pannel">
         <div class="write-article-btn">
@@ -75,20 +73,16 @@
 <script setup>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import logo from '@/assets/img/nav-logo.png'
+import logo from '@/assets/img/logo.png'
 import Theme from '@/utils/theme'
 import avactor from '@/assets/img/avactor.jpeg'
 
 const store = useStore()
 
-const navActiveIdx = computed(() => store.state.navActiveIdx)
+const isLogin = computed(() => store.state.isLogin)
 
 function changeTheme() {
   Theme.changeTheme(Theme.themeState.value === 'light' ? 'dark' : 'light')
-}
-
-function handleNavChange(idx) {
-  store.commit('changeNavActive', idx)
 }
 </script>
 
@@ -97,13 +91,13 @@ function handleNavChange(idx) {
   position: sticky;
   height: 58px;
   top: 0;
-  background-color: var(--main-bgcolor);
-  border-bottom: 1px solid #ccc;
+  background-color: var(--nav-bgcolor);
+  border-bottom: 1px solid var(--nav-border-color);
 
   nav {
     margin: 0 36px;
     height: 100%;
-    background-color: var(--main-bgcolor);
+    background-color: var(--nav-bgcolor);
     display: flex;
     align-items: center;
     a {
@@ -136,7 +130,7 @@ function handleNavChange(idx) {
         justify-content: center;
         align-items: center;
 
-        &.active {
+        &.router-link-active {
           color: var(--logo-color);
         }
 
@@ -208,6 +202,14 @@ function handleNavChange(idx) {
           width: 40px;
         }
       }
+    }
+
+    .login-btn {
+      height: 100%;
+      color: var(--main-color);
+      line-height: 58px;
+      width: 80px;
+      text-align: center;
     }
 
     .write-article-pannel {
