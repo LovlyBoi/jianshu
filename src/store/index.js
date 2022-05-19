@@ -1,14 +1,15 @@
-import { createStore } from 'vuex';
+import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    navActiveIdx: 1,
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
+    changeNavActive(state, idx) {
+      state.navActiveIdx = idx
+    },
   },
-  actions: {
-  },
-  modules: {
-  },
-});
+  actions: {},
+  modules: {},
+})

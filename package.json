@@ -5,10 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "cloc": "cloc ./ --exclude-dir=node_modules --exclude-ext=json,md"
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "normalize.css": "^8.0.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
