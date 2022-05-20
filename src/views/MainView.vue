@@ -1,8 +1,17 @@
 <template>
-  <div class="main-view">Main View</div>
+  <div class="main-view">
+    Main View
+    <button @click="showToast">toast</button>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { message } from 'ant-design-vue'
+
+function showToast() {
+  message.success('This is a toast')
+}
+</script>
 
 <style lang="less" scoped>
 .main-view {

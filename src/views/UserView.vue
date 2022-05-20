@@ -25,6 +25,7 @@
   height: 100%;
 
   .user-pannel {
+    box-sizing: content-box;
     width: 300px;
     position: absolute;
     left: 50%;

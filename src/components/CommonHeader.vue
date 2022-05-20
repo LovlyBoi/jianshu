@@ -1,30 +1,30 @@
 <template>
   <div class="common-header clear-fix">
     <nav>
-      <router-link to="/" @click="handleNavChange(1)">
+      <router-link to="/">
         <div class="logo">
           <img :src="logo" alt="简书" />
         </div>
       </router-link>
 
       <ul class="center-nav">
-        <router-link class="find" to="/" @click="handleNavChange(1)">
+        <router-link class="find" to="/">
           <span class="iconfont icon-faxian"></span>
           发现
         </router-link>
-        <router-link class="focus" to="/follow" @click="handleNavChange(2)">
+        <router-link class="focus" to="/follow">
           <span class="iconfont icon-shu"></span>
           关注
         </router-link>
-        <router-link class="find" to="/member" @click="handleNavChange(3)">
+        <router-link class="find" to="/member">
           <span class="iconfont icon-huiyuan"></span>
           会员
         </router-link>
-        <router-link class="find" to="/it" @click="handleNavChange(4)">
+        <router-link class="find" to="/it">
           <span class="iconfont icon-daima"></span>
           IT技术
         </router-link>
-        <router-link class="find" to="/message" @click="handleNavChange(5)">
+        <router-link class="find" to="/message">
           <span class="iconfont icon-tixing"></span>
           消息
         </router-link>
@@ -218,7 +218,7 @@ function handleExit() {
       margin: 0;
       top: 58px;
       width: 160px;
-      // height: 400px;
+      color: var(--main-color);
       background-color: var(--nav-bgcolor);
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 

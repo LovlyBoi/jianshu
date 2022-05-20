@@ -27,6 +27,7 @@
 import { reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { message } from 'ant-design-vue'
 import { register } from '@/api'
 import md5 from 'md5'
 
@@ -41,13 +42,13 @@ const user = reactive({
 
 async function handleRegister() {
   const hash = md5(user.password)
-  console.log(hash)
   const { token } = await register(user.username, hash)
   if (token) {
     store.commit('changeLoginState', {
       state: true,
       token,
     })
+    message.success('登陆成功！')
     router.replace('/')
   }
 }

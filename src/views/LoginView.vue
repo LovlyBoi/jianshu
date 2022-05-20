@@ -24,6 +24,7 @@
 import { ref, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { message } from 'ant-design-vue'
 import { login } from '@/api'
 import md5 from 'md5'
 
@@ -46,6 +47,7 @@ async function handleLogin() {
       state: true,
       token,
     })
+    message.success('登陆成功！')
     router.replace('/')
   }
 }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { message } from 'ant-design-vue'
 import { getCache } from '@/utils/cahe'
 import { TIMEOUT, BASEURL } from './config'
 
@@ -20,9 +21,9 @@ class Request {
         const errMsg = err.response.data.msg
         if (errMsg) {
           // toast
-          console.log(errMsg)
+          message.error(errMsg)
         } else {
-          console.log('程序出错了呢')
+          message.error('程序出错了呢')
         }
         return err
       },
