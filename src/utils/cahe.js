@@ -1,4 +1,4 @@
-function setCache(key, value) {
+function setCache(key, value = '') {
   return localStorage.setItem(key, JSON.stringify(value))
 }
 

@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '@/store'
 import MainView from '../views/MainView.vue'
 
 const routes = [
@@ -50,8 +51,14 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  if (to.fullPath === '/user') {
-    return '/user/login'
+  // 如果已经登陆，不允许跳转到登录页面
+  if (/^\/user/.test(to.fullPath)) {
+    if (store.state.isLogin) {
+      return false
+    }
+    if (to.fullPath === '/user') {
+      return '/user/login'
+    }
   }
 })
 

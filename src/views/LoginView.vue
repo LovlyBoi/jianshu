@@ -22,6 +22,13 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { login } from '@/api'
+import { setCache } from '@/utils/cahe'
+
+const store = useStore()
+const router = useRouter()
 
 const rememberMe = ref(true)
 
@@ -31,7 +38,10 @@ const user = reactive({
 })
 
 async function handleLogin() {
-  console.log({ ...user })
+  const { token } = await login(user.username, user.password)
+  setCache('token', token)
+  store.commit('changeLoginState', true)
+  router.replace('/')
 }
 </script>
 

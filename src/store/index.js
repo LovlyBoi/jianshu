@@ -8,6 +8,7 @@ export default createStore({
   getters: {},
   mutations: {
     changeLoginState(state, loginState) {
+      console.log('store ', loginState)
       state.isLogin = loginState
     },
   },
