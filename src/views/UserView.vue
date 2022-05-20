@@ -39,6 +39,7 @@
       font-size: 20px;
       display: flex;
       justify-content: center;
+      color: var(--user-pannel-color);
 
       a {
         padding: 10px;

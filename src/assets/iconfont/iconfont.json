@@ -13,6 +13,20 @@
       "unicode_decimal": 983418
     },
     {
+      "icon_id": "1360",
+      "name": "新浪微博",
+      "font_class": "xinlangweibo",
+      "unicode": "f01af",
+      "unicode_decimal": 983471
+    },
+    {
+      "icon_id": "77156",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "f0106",
+      "unicode_decimal": 983302
+    },
+    {
       "icon_id": "809963",
       "name": "点赞",
       "font_class": "dianzan",
@@ -53,6 +67,13 @@
       "font_class": "pinglun",
       "unicode": "e60c",
       "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "1277927",
+      "name": "密码1",
+      "font_class": "mima1",
+      "unicode": "e659",
+      "unicode_decimal": 58969
     },
     {
       "icon_id": "1288623",
@@ -153,6 +174,13 @@
       "unicode_decimal": 60296
     },
     {
+      "icon_id": "4936984",
+      "name": "QQ",
+      "font_class": "QQ",
+      "unicode": "e882",
+      "unicode_decimal": 59522
+    },
+    {
       "icon_id": "5492276",
       "name": "作者",
       "font_class": "zuozhe",
@@ -195,11 +223,25 @@
       "unicode_decimal": 59174
     },
     {
+      "icon_id": "7133552",
+      "name": "再次输入密码",
+      "font_class": "zaicishurumima",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
       "icon_id": "11125236",
       "name": "文章",
       "font_class": "16",
       "unicode": "e61e",
       "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "12188323",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e7fd",
+      "unicode_decimal": 59389
     },
     {
       "icon_id": "12672821",

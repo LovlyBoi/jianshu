@@ -14,5 +14,8 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vuejs-accessibility/click-events-have-key-events': 'off',
     'consistent-return': 'off',
+    'vuejs-accessibility/form-control-has-label': 'off',
+    'import/no-mutable-exports': 'off',
+    'no-param-reassign': 'off',
   },
 }
