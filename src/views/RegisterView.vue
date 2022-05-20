@@ -1,12 +1,17 @@
 <template>
   <div class="register-view">
-    <input type="text" class="username" placeholder="你的用户名" />
+    <input type="text" class="username" placeholder="你的用户名" v-model="user.username" />
     <span class="input-icon iconfont icon-yonghu"></span>
-    <input type="password" class="password" placeholder="密码" />
+    <input type="password" class="password" placeholder="密码" v-model="user.password" />
     <span class="input-icon iconfont icon-mima1"></span>
-    <input type="password" class="password-again" placeholder="再次输入密码" />
+    <input
+      type="password"
+      class="password-again"
+      placeholder="再次输入密码"
+      v-model="user.passwordAgain"
+    />
     <span class="input-icon iconfont icon-zaicishurumima"></span>
-    <div class="login-btn">注册</div>
+    <div class="login-btn" @click="handleRegister">注册</div>
     <div class="more-sign">
       <h6>更多登录方式</h6>
       <div class="more-sign-icon">
@@ -18,7 +23,35 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { reactive } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { register } from '@/api'
+import md5 from 'md5'
+
+const store = useStore()
+const router = useRouter()
+
+const user = reactive({
+  username: '',
+  password: '',
+  passwordAgain: '',
+})
+
+async function handleRegister() {
+  const hash = md5(user.password)
+  console.log(hash)
+  const { token } = await register(user.username, hash)
+  if (token) {
+    store.commit('changeLoginState', {
+      state: true,
+      token,
+    })
+    router.replace('/')
+  }
+}
+</script>
 
 <style lang="less" scoped>
 .register-view {

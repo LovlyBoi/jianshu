@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1652977953883') format('truetype');
+  src: url('iconfont.ttf?t=1653016640606') format('truetype');
 }
 
 .iconfont {
@@ -21,6 +21,10 @@
 
 .icon-weixin:before {
   content: "\f0106";
+}
+
+.icon-xihuan:before {
+  content: "\e761";
 }
 
 .icon-dianzan:before {
@@ -107,6 +111,10 @@
   content: "\eb88";
 }
 
+.icon-tuichu:before {
+  content: "\e616";
+}
+
 .icon-QQ:before {
   content: "\e882";
 }
@@ -128,7 +136,7 @@
 }
 
 .icon-yumaobi:before {
-  content: "\e616";
+  content: "\e617";
 }
 
 .icon-faxian:before {
@@ -141,6 +149,10 @@
 
 .icon-16:before {
   content: "\e61e";
+}
+
+.icon-wode:before {
+  content: "\e60e";
 }
 
 .icon-yonghu:before {
@@ -160,7 +172,7 @@
 }
 
 .icon-gengduo1:before {
-  content: "\e60e";
+  content: "\e60f";
 }
 
 .icon-gengduo2:before {

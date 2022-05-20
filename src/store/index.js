@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { getCache } from '@/utils/cahe'
+import { getCache, setCache } from '@/utils/cahe'
 
 export default createStore({
   state: {
@@ -7,8 +7,13 @@ export default createStore({
   },
   getters: {},
   mutations: {
-    changeLoginState(state, loginState) {
-      console.log('store ', loginState)
+    changeLoginState(state, payload) {
+      const { state: loginState, token } = payload
+      if (loginState) {
+        setCache('token', token)
+      } else {
+        setCache('token', '')
+      }
       state.isLogin = loginState
     },
   },

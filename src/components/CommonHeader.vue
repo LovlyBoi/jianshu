@@ -8,43 +8,23 @@
       </router-link>
 
       <ul class="center-nav">
-        <router-link
-          class="find"
-          to="/"
-          @click="handleNavChange(1)"
-        >
+        <router-link class="find" to="/" @click="handleNavChange(1)">
           <span class="iconfont icon-faxian"></span>
           发现
         </router-link>
-        <router-link
-          class="focus"
-          to="/follow"
-          @click="handleNavChange(2)"
-        >
+        <router-link class="focus" to="/follow" @click="handleNavChange(2)">
           <span class="iconfont icon-shu"></span>
           关注
         </router-link>
-        <router-link
-          class="find"
-          to="/member"
-          @click="handleNavChange(3)"
-        >
+        <router-link class="find" to="/member" @click="handleNavChange(3)">
           <span class="iconfont icon-huiyuan"></span>
           会员
         </router-link>
-        <router-link
-          class="find"
-          to="/it"
-          @click="handleNavChange(4)"
-        >
+        <router-link class="find" to="/it" @click="handleNavChange(4)">
           <span class="iconfont icon-daima"></span>
           IT技术
         </router-link>
-        <router-link
-          class="find"
-          to="/message"
-          @click="handleNavChange(5)"
-        >
+        <router-link class="find" to="/message" @click="handleNavChange(5)">
           <span class="iconfont icon-tixing"></span>
           消息
         </router-link>
@@ -52,10 +32,30 @@
       <div class="theme-btn" @click="changeTheme">
         {{ Theme.themeState.value === 'light' ? '深色主题' : '浅色主题' }}
       </div>
-      <div class="avactor" v-if="isLogin">
-        <div class="avactor-container">
-          <img :src="avactor" alt="用户头像" />
+      <div class="user" v-if="isLogin">
+        <div class="avactor">
+          <div class="avactor-container">
+            <img :src="avactor" alt="用户头像" />
+          </div>
         </div>
+        <ul class="avactor-popup">
+          <li class="popup-item">
+            <span class="iconfont icon-wode"></span>
+            我的主页
+          </li>
+          <li class="popup-item">
+            <span class="iconfont icon-xihuan"></span>
+            喜欢的文章
+          </li>
+          <li class="popup-item">
+            <span class="iconfont icon-shezhi"></span>
+            设置
+          </li>
+          <li class="popup-item" @click="handleExit">
+            <span class="iconfont icon-tuichu"></span>
+            退出
+          </li>
+        </ul>
       </div>
       <div class="login-btn" v-else>
         <router-link to="/user/login">登录</router-link>
@@ -83,6 +83,12 @@ const isLogin = computed(() => store.state.isLogin)
 
 function changeTheme() {
   Theme.changeTheme(Theme.themeState.value === 'light' ? 'dark' : 'light')
+}
+
+function handleExit() {
+  store.commit('changeLoginState', {
+    state: false,
+  })
 }
 </script>
 
@@ -202,6 +208,46 @@ function changeTheme() {
           width: 40px;
         }
       }
+    }
+
+    .avactor-popup {
+      display: none;
+      position: fixed;
+      z-index: -1;
+      padding: 6px 0;
+      margin: 0;
+      top: 58px;
+      width: 160px;
+      // height: 400px;
+      background-color: var(--nav-bgcolor);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+      .popup-item {
+        height: 50px;
+        padding-left: 20px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .iconfont {
+          color: var(--logo-color);
+          font-size: 18px;
+          transform: translateY(1px);
+          margin-right: 10px;
+        }
+
+        &:hover {
+          background-color: var(--nav-hover-bgcolor);
+        }
+      }
+    }
+
+    .user:hover .avactor-popup {
+      display: block;
+    }
+
+    .user:hover .avactor {
+      background-color: var(--nav-hover-bgcolor);
     }
 
     .login-btn {

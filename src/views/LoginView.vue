@@ -25,7 +25,7 @@ import { ref, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { login } from '@/api'
-import { setCache } from '@/utils/cahe'
+import md5 from 'md5'
 
 const store = useStore()
 const router = useRouter()
@@ -38,10 +38,16 @@ const user = reactive({
 })
 
 async function handleLogin() {
-  const { token } = await login(user.username, user.password)
-  setCache('token', token)
-  store.commit('changeLoginState', true)
-  router.replace('/')
+  const hash = md5(user.password)
+  console.log(hash)
+  const { token } = await login(user.username, hash)
+  if (token) {
+    store.commit('changeLoginState', {
+      state: true,
+      token,
+    })
+    router.replace('/')
+  }
 }
 </script>
 
