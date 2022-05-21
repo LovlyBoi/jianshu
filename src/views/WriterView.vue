@@ -1,12 +1,20 @@
 <template>
   <div class="writer-view">
-    <mavon-editor v-model="value" :tabSize="2" :ishljs="true" :toolbars="toolbars" />
+    <mavon-editor
+      v-model="value"
+      :tabSize="2"
+      :ishljs="true"
+      :toolbars="toolbars"
+      @imgAdd="handleImgAdd"
+      ref="editorRef"
+    />
     <button @click="handleShow">show</button>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { uploadImg } from '@/api'
 import 'mavon-editor/dist/css/index.css'
 
 const value = ref('')
@@ -46,8 +54,15 @@ const toolbars = {
   preview: true, // 预览
 }
 
+const editorRef = ref(null)
+
 const handleShow = () => {
   console.log(value.value)
+}
+
+async function handleImgAdd(pos, img) {
+  const { url } = await uploadImg(img)
+  editorRef.value.$img2Url(pos, url[0])
 }
 </script>
 
