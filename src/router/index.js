@@ -7,26 +7,41 @@ const routes = [
     path: '/',
     name: 'main',
     component: MainView,
+    meta: {
+      keepAlive: false,
+    },
   },
   {
     path: '/follow',
     name: 'follow',
     component: () => import('@/views/FollowView.vue'),
+    meta: {
+      keepAlive: false,
+    },
   },
   {
     path: '/member',
     name: 'member',
     component: () => import('@/views/MemberView.vue'),
+    meta: {
+      keepAlive: false,
+    },
   },
   {
     path: '/it',
     name: 'it',
     component: () => import('@/views/ITView.vue'),
+    meta: {
+      keepAlive: false,
+    },
   },
   {
     path: '/message',
     name: 'message',
     component: () => import('@/views/MessageView.vue'),
+    meta: {
+      keepAlive: false,
+    },
   },
   {
     path: '/user',
@@ -42,6 +57,17 @@ const routes = [
         component: () => import('@/views/RegisterView.vue'),
       },
     ],
+    meta: {
+      keepAlive: true,
+    },
+  },
+  {
+    path: '/writer',
+    name: 'writer',
+    component: () => import('@/views/WriterView.vue'),
+    meta: {
+      keepAlive: true,
+    },
   },
 ]
 

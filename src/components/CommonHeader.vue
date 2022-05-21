@@ -61,7 +61,7 @@
         <router-link to="/user/login">登录</router-link>
       </div>
       <div class="write-article-pannel">
-        <div class="write-article-btn">
+        <div class="write-article-btn" @click="$router.push('/writer')">
           <span class="iconfont icon-yumaobi"></span>
           写文章
         </div>
@@ -95,6 +95,7 @@ function handleExit() {
 <style lang="less" scoped>
 .common-header {
   position: sticky;
+  z-index: 9999;
   height: 58px;
   top: 0;
   background-color: var(--nav-bgcolor);

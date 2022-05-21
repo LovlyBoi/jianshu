@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import mavonEditor from 'mavon-editor'
 import '@/config'
 import App from './App.vue'
 import router from './router'
@@ -11,5 +12,5 @@ import '@/assets/css/index.less'
 createApp(App)
   .use(store)
   .use(router)
-  // .use(Button)
+  .use(mavonEditor)
   .mount('#app')
