@@ -33,12 +33,12 @@
         {{ Theme.themeState.value === 'light' ? '深色主题' : '浅色主题' }}
       </div>
       <div class="user" v-if="isLogin">
-        <div class="avactor">
-          <div class="avactor-container">
-            <img :src="avactor" alt="用户头像" />
+        <div class="avatar">
+          <div class="avatar-container">
+            <img :src="avatar" alt="用户头像" />
           </div>
         </div>
-        <ul class="avactor-popup">
+        <ul class="avatar-popup">
           <li class="popup-item">
             <span class="iconfont icon-wode"></span>
             我的主页
@@ -75,7 +75,7 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import logo from '@/assets/img/logo.png'
 import Theme from '@/utils/theme'
-import avactor from '@/assets/img/avactor.jpeg'
+import avatar from '@/assets/img/avatar.jpeg'
 
 const store = useStore()
 
@@ -176,7 +176,7 @@ function handleExit() {
       cursor: pointer;
     }
 
-    .avactor {
+    .avatar {
       width: 80px;
       height: 58px;
       display: flex;
@@ -188,7 +188,7 @@ function handleExit() {
         background-color: var(--nav-hover-bgcolor);
       }
 
-      .avactor-container {
+      .avatar-container {
         width: 40px;
         height: 40px;
         border-radius: 20px;
@@ -211,7 +211,7 @@ function handleExit() {
       }
     }
 
-    .avactor-popup {
+    .avatar-popup {
       display: none;
       position: fixed;
       z-index: -1;
@@ -243,11 +243,11 @@ function handleExit() {
       }
     }
 
-    .user:hover .avactor-popup {
+    .user:hover .avatar-popup {
       display: block;
     }
 
-    .user:hover .avactor {
+    .user:hover .avatar {
       background-color: var(--nav-hover-bgcolor);
     }
 

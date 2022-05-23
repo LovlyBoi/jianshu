@@ -20,7 +20,6 @@ class Request {
       (err) => {
         const errMsg = err.response.data.msg
         if (errMsg) {
-          // toast
           message.error(errMsg)
         } else {
           message.error('程序出错了呢')
