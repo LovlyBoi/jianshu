@@ -61,7 +61,22 @@
         <router-link to="/user/login">登录</router-link>
       </div>
       <div class="write-article-pannel">
-        <div class="write-article-btn" @click="$router.push('/writer')">
+        <div class="write-article-btn" @click="modalVisible = true" v-if="$route.fullPath === '/writer'">
+          发布
+          <span class="iconfont icon-icon_fabu"></span>
+          <teleport to="#app">
+            <a-modal
+              v-model:visible="modalVisible"
+              title="发布文章"
+              @ok="handlePublish"
+              okText="确定"
+              cancelText="取消"
+            >
+              <a-input placeholder="文章标题" v-model:value="blogTitle" />
+            </a-modal>
+          </teleport>
+        </div>
+        <div class="write-article-btn" @click="$router.push('/writer')" v-else>
           <span class="iconfont icon-yumaobi"></span>
           写文章
         </div>
@@ -71,15 +86,21 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { message } from 'ant-design-vue'
 import logo from '@/assets/img/logo.png'
 import Theme from '@/utils/theme'
 import avatar from '@/assets/img/avatar.jpeg'
 
 const store = useStore()
+const router = useRouter()
 
-const isLogin = computed(() => store.state.isLogin)
+const isLogin = computed(() => store.state.user.isLogin)
+
+const modalVisible = ref(false)
+const blogTitle = ref('')
 
 function changeTheme() {
   Theme.changeTheme(Theme.themeState.value === 'light' ? 'dark' : 'light')
@@ -89,6 +110,19 @@ function handleExit() {
   store.commit('changeLoginState', {
     state: false,
   })
+}
+
+// 发布文章，向store提交action
+async function handlePublish() {
+  const res = await store.dispatch('publishArticle', { title: blogTitle.value })
+  if (res instanceof Error) {
+    modalVisible.value = false
+    return
+  }
+  modalVisible.value = false
+  blogTitle.value = ''
+  message.success('发布成功')
+  router.replace('/')
 }
 </script>
 

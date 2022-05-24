@@ -79,7 +79,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   // 如果已经登陆，不允许跳转到登录页面
   if (/^\/user/.test(to.fullPath)) {
-    if (store.state.isLogin) {
+    if (store.state.user.isLogin) {
       return false
     }
     if (to.fullPath === '/user') {

@@ -41,11 +41,13 @@ const user = reactive({
 async function handleLogin() {
   const hash = md5(user.password)
   console.log(hash)
-  const { token } = await login(user.username, hash)
+  const { token, userId, username } = await login(user.username, hash)
   if (token) {
     store.commit('changeLoginState', {
       state: true,
       token,
+      userId,
+      username,
     })
     message.success('登陆成功！')
     router.replace('/')

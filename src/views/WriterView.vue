@@ -2,22 +2,28 @@
   <div class="writer-view">
     <mavon-editor
       v-model="value"
+      @change="handleChange"
       :tabSize="2"
       :ishljs="true"
       :toolbars="toolbars"
       @imgAdd="handleImgAdd"
       ref="editorRef"
     />
-    <button @click="handleShow">show</button>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 import { uploadImg } from '@/api'
 import 'mavon-editor/dist/css/index.css'
 
+const store = useStore()
+
 const value = ref('')
+
+value.value = store.state.article || ''
+
 const toolbars = {
   bold: true, // 粗体
   italic: true, // 斜体
@@ -56,13 +62,13 @@ const toolbars = {
 
 const editorRef = ref(null)
 
-const handleShow = () => {
-  console.log(value.value)
-}
-
 async function handleImgAdd(pos, img) {
   const { url } = await uploadImg(img)
   editorRef.value.$img2Url(pos, url[0])
+}
+
+function handleChange(article, render) {
+  store.commit('saveArticle', { article, render })
 }
 </script>
 

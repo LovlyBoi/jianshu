@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ['plugin:vue/vue3-essential', '@vue/airbnb'],
+  extends: ['plugin:vue/vue3-essential', '@vue/airbnb', 'prettier'],
   parserOptions: {
     parser: '@babel/eslint-parser',
   },
@@ -17,5 +17,6 @@ module.exports = {
     'vuejs-accessibility/form-control-has-label': 'off',
     'import/no-mutable-exports': 'off',
     'no-param-reassign': 'off',
+    'import/prefer-default-export': 'off',
   },
 }
