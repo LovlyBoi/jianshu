@@ -115,10 +115,12 @@ function handleExit() {
 // 发布文章，向store提交action
 async function handlePublish() {
   const res = await store.dispatch('publishArticle', { title: blogTitle.value })
+  // 发布失败
   if (res instanceof Error) {
     modalVisible.value = false
     return
   }
+  // 发布成功
   modalVisible.value = false
   blogTitle.value = ''
   message.success('发布成功')
