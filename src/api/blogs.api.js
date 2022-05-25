@@ -3,7 +3,7 @@ import request from '../network'
 function getBlogs(ps, pn) {
   return request({
     method: 'GET',
-    url: '/blogs/getBlogs',
+    url: '/blogs',
     params: {
       ps,
       pn,
@@ -21,4 +21,11 @@ function publishBlog(blog) {
   })
 }
 
-export { getBlogs, publishBlog }
+function getBlogById(id) {
+  return request({
+    method: 'GET',
+    url: `/blogs/${id}`,
+  })
+}
+
+export { getBlogs, publishBlog, getBlogById }

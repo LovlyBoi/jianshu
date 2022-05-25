@@ -18,3 +18,40 @@ body {
 .ant-modal-mask {
   z-index: 99999999 !important;
 }
+
+#article-content {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--main-color) !important;
+  }
+
+  li p.first {
+    display: inline-block;
+  }
+
+  ul,
+  ol {
+    padding-left: 30px;
+  }
+
+  ul:first-child,
+  ol:first-child {
+    margin-top: 0;
+  }
+
+  ul:last-child,
+  ol:last-child {
+    margin-bottom: 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .hljs {
+    color: var(--main-color) !important;
+    background-color: var(--code-bgcolor) !important;
+    border-radius: 6px;
+    padding: 14px;
+    overflow: scroll;
+  }
+}

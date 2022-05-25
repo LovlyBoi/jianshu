@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import mavonEditor from 'mavon-editor'
-import { Modal, Input } from 'ant-design-vue'
+import { Modal, Input, Avatar } from 'ant-design-vue'
 import '@/config'
 import App from './App.vue'
 import router from './router'
@@ -16,4 +16,5 @@ createApp(App)
   .use(mavonEditor)
   .use(Modal)
   .use(Input)
+  .use(Avatar)
   .mount('#app')

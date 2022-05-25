@@ -1,7 +1,7 @@
 <template>
   <div class="blog-list-item">
     <h3 href="#" class="header">
-      <a class="title">
+      <a class="title" :href="`#/article/${blog_id}`">
         {{ title }}
       </a>
     </h3>
@@ -44,6 +44,10 @@ defineProps({
   likes: {
     type: Number,
     default: 0,
+  },
+  blog_id: {
+    type: Number,
+    require: true,
   },
 })
 </script>

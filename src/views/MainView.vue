@@ -2,7 +2,7 @@
   <div class="main-view">
     <div class="width-limit">
       <div class="main-pannel">
-        <a class="main-page-img" href="javascript:;">
+        <a class="main-page-img" href="javacript:;" target="_blank">
           <img :src="starProject" alt="繁星计划" />
         </a>
         <BlogList> </BlogList>

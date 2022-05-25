@@ -44,6 +44,14 @@ const routes = [
     },
   },
   {
+    path: '/article/:id',
+    name: 'article',
+    component: () => import('@/views/ArticleView.vue'),
+    meta: {
+      keepAlive: false,
+    },
+  },
+  {
     path: '/user',
     name: 'user',
     component: () => import('@/views/UserView.vue'),
