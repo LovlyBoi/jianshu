@@ -21,15 +21,12 @@ import BlogList from '@/components/BlogList.vue'
 .main-view {
   .width-limit {
     max-width: 960px;
-    // height: 1000px;
     margin: 0 auto;
     padding-top: 20px;
-    // background-color: #ccc;
     display: flex;
     justify-content: space-between;
 
     .main-pannel {
-      // background-color: #ccc;
       width: 625px;
 
       .main-page-img {
@@ -46,7 +43,7 @@ import BlogList from '@/components/BlogList.vue'
     }
 
     .side-pannel {
-      background-color: salmon;
+      background-color: #dedede;
       width: 280px;
     }
   }

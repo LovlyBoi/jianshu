@@ -18,5 +18,6 @@ module.exports = {
     'import/no-mutable-exports': 'off',
     'no-param-reassign': 'off',
     'import/prefer-default-export': 'off',
+    'import/no-cycle': 'off',
   },
 }
