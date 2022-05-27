@@ -42,13 +42,14 @@ const user = reactive({
 
 async function handleRegister() {
   const hash = md5(user.password)
-  const { token, userId, username } = await register(user.username, hash)
+  const { token, userId, username, avatar } = await register(user.username, hash)
   if (token) {
     store.commit('changeLoginState', {
       state: true,
       token,
       userId,
       username,
+      avatar,
     })
     message.success('登陆成功！')
     router.replace('/')

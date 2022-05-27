@@ -17,7 +17,7 @@ function publishBlog(blog) {
     url: '/blogs/publishBlog',
     data: {
       blog,
-    }
+    },
   })
 }
 
@@ -28,4 +28,25 @@ function getBlogById(id) {
   })
 }
 
-export { getBlogs, publishBlog, getBlogById }
+function getComments(id, ps, pn) {
+  return request({
+    method: 'GET',
+    url: `/blogs/${id}/comments`,
+    params: {
+      ps,
+      pn,
+    },
+  })
+}
+
+function publishComment(comment) {
+  return request({
+    method: 'POST',
+    url: '/blogs/publishComment',
+    data: {
+      comment,
+    },
+  })
+}
+
+export { getBlogs, publishBlog, getBlogById, getComments, publishComment }

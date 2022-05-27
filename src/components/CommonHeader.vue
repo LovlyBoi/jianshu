@@ -35,7 +35,7 @@
       <div class="user" v-if="isLogin">
         <div class="avatar">
           <div class="avatar-container">
-            <img :src="avatar" alt="用户头像" />
+            <img :src="store.state.user.avatar" alt="用户头像" />
           </div>
         </div>
         <ul class="avatar-popup">
@@ -92,7 +92,7 @@ import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
 import logo from '@/assets/img/logo.png'
 import Theme from '@/utils/theme'
-import avatar from '@/assets/img/avatar.jpeg'
+// import avatar from '@/assets/img/avatar.jpeg'
 
 const store = useStore()
 const router = useRouter()

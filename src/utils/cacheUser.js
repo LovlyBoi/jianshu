@@ -1,13 +1,11 @@
 import { setCache } from './cahe'
 
-function cahceUser({ userId, username }) {
-  setCache('userId', userId)
-  setCache('username', username)
+function cahceUser(user) {
+  setCache('user', user)
 }
 
 function unCacheUser() {
-  setCache('userId', '')
-  setCache('username', '')
+  setCache('user', {})
 }
 
 export {

@@ -8,8 +8,9 @@ export default createStore({
   state: {
     user: {
       isLogin: !!getCache('token'),
-      userId: getCache('userId') || 0,
-      username: getCache('username') || '',
+      userId: getCache('user')?.userId || 0,
+      username: getCache('user')?.username || '',
+      avatar: getCache('user')?.avatar || 'https://joeschmoe.io/api/v1/random'
     },
     blog: {
       // 编辑区文章
@@ -23,14 +24,15 @@ export default createStore({
   mutations: {
     // 改变登录状态
     changeLoginState(state, payload) {
-      const { state: loginState, token, userId, username } = payload
+      const { state: loginState, token, userId, username, avatar } = payload
 
       if (loginState) {
         cahceToken(token)
         state.user.userId = userId
         state.user.username = username
+        state.user.avatar = avatar
         // 用户信息持久化
-        cahceUser({ userId, username })
+        cahceUser({ userId, username, avatar })
         console.log({ ...state.user })
       } else {
         unCacheToken()
