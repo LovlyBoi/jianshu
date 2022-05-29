@@ -35,7 +35,14 @@
           </div>
           <div class="all-comments">
             <h4 class="title">全部评论</h4>
-            <CommentsList :comments="comments"></CommentsList>
+            <CommentsList
+              :comments="comments"
+              @pullComments="
+                () => {
+                  pullComments()
+                }
+              "
+            ></CommentsList>
           </div>
         </div>
       </div>

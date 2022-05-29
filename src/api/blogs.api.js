@@ -49,4 +49,14 @@ function publishComment(comment) {
   })
 }
 
-export { getBlogs, publishBlog, getBlogById, getComments, publishComment }
+function replyComment(reply) {
+  return request({
+    method: 'POST',
+    url: '/blogs/replyComment',
+    data: {
+      reply,
+    },
+  })
+}
+
+export { getBlogs, publishBlog, getBlogById, getComments, publishComment, replyComment }

@@ -27,10 +27,20 @@
             {{ comment.like }}
           </span>
         </span>
-        <span key="comment-basic-reply-to">回复</span>
+        <span key="comment-basic-reply-to" @click="comment.showReply = true">回复</span>
       </template>
       <!-- 评论回复 -->
-      <CommentReply @certain="handlePublishReply"></CommentReply>
+      <CollapseTransition>
+        <CommentReply
+          @certain="
+            (value) => {
+              handlePublishReply(value, comment)
+            }
+          "
+          v-if="comment.showReply"
+          @cancel="comment.showReply = false"
+        ></CommentReply>
+      </CollapseTransition>
       <!-- 回复 -->
       <a-comment v-for="reply in comment.children" :key="reply.comment_id">
         <template #author>
@@ -66,13 +76,19 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import dayjs from 'dayjs'
+import { useStore } from 'vuex'
+import { replyComment } from '@/api/index'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { LikeFilled, LikeOutlined } from '@ant-design/icons-vue'
 import CommentReply from '@/components/CommentReply.vue'
+import CollapseTransition from '@/components/CollapseTransition.vue'
+import { message } from 'ant-design-vue'
 
 dayjs.extend(relativeTime)
+
+const store = useStore()
 
 const like = (comment) => {
   if (comment.action !== 'like') {
@@ -84,20 +100,27 @@ const like = (comment) => {
   }
 }
 
-const p = defineProps({
+defineProps({
   comments: {
     type: Array,
     default: () => [],
   },
 })
 
-async function handlePublishReply(value) {
-  console.log(value)
-}
+const emit = defineEmits(['pullComments'])
 
-setTimeout(() => {
-  console.log(p.comments)
-}, 300)
+async function handlePublishReply(value, comment) {
+  console.log(value, comment)
+  const reply = {
+    comment_id: comment.comment_id,
+    content: value,
+    author_id: store.state.user.userId,
+  }
+  const result = await replyComment(reply)
+  message.success('回复成功')
+  emit('pullComments')
+  console.log(result)
+}
 </script>
 
 <style lang="less" scoped>

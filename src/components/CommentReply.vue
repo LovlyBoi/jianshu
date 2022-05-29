@@ -6,7 +6,7 @@
     <div class="btn-pannel">
       <div class="certain" v-if="value" @click="$emit('certain', value)">确定</div>
       <div class="certain disable" v-else>确定</div>
-      <div class="cancel">取消</div>
+      <div class="cancel" @click="$emit('cancel')">取消</div>
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@
 <script setup>
 import { ref, defineEmits } from 'vue'
 
-defineEmits(['certain'])
+defineEmits(['certain', 'cancel'])
 
 const value = ref('')
 </script>
