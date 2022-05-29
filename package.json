@@ -9,6 +9,7 @@
     "cloc": "cloc ./ --exclude-dir=node_modules --exclude-ext=json,md"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.3",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",

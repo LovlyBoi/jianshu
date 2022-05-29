@@ -35,6 +35,7 @@
           </div>
           <div class="all-comments">
             <h4 class="title">全部评论</h4>
+            <CommentsList :comments="comments"></CommentsList>
           </div>
         </div>
       </div>
@@ -48,6 +49,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import UserCard from '@/components/UserCard.vue'
+import CommentsList from '@/components/CommentsList.vue'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
 import { getBlogById, getComments, publishComment } from '@/api'
@@ -62,6 +64,18 @@ const articleRef = ref(null)
 
 const commentContent = ref('')
 
+const comments = ref([])
+
+function pullComments(ps = 10, pn = 0) {
+  getComments(route.params.id, ps, pn)
+    .then((res) => {
+      comments.value = res
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
 // 发布评论
 async function handlePublishComment() {
   if (!commentContent.value) return
@@ -73,12 +87,13 @@ async function handlePublishComment() {
   const result = await publishComment(comment)
   message.success(result.msg)
   commentContent.value = ''
+  // 重新拉取评论
+  pullComments()
 }
 
 getBlogById(route.params.id)
   .then((res) => {
     blog.value = res
-    console.log(blog.value)
   })
   .then(() => {
     if (articleRef.value) {
@@ -91,13 +106,7 @@ getBlogById(route.params.id)
     console.log(err)
   })
 
-getComments(route.params.id, 10, 0)
-  .then((res) => {
-    console.log(res)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+pullComments()
 </script>
 
 <style lang="less" scoped>
@@ -110,7 +119,12 @@ getComments(route.params.id, 10, 0)
     display: flex;
     justify-content: space-between;
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       color: var(--main-color) !important;
     }
 
