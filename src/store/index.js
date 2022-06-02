@@ -33,7 +33,6 @@ export default createStore({
         state.user.avatar = avatar
         // 用户信息持久化
         cahceUser({ userId, username, avatar })
-        console.log({ ...state.user })
       } else {
         unCacheToken()
         unCacheUser()

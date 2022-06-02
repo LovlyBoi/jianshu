@@ -47,7 +47,7 @@
             <span class="iconfont icon-xihuan"></span>
             喜欢的文章
           </li>
-          <li class="popup-item">
+          <li class="popup-item" @click="$router.push('/setting')">
             <span class="iconfont icon-shezhi"></span>
             设置
           </li>

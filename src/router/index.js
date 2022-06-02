@@ -9,6 +9,7 @@ const routes = [
     component: MainView,
     meta: {
       keepAlive: false,
+      auth: false,
     },
   },
   {
@@ -17,6 +18,7 @@ const routes = [
     component: () => import('@/views/FollowView.vue'),
     meta: {
       keepAlive: false,
+      auth: false,
     },
   },
   {
@@ -25,6 +27,7 @@ const routes = [
     component: () => import('@/views/MemberView.vue'),
     meta: {
       keepAlive: false,
+      auth: false,
     },
   },
   {
@@ -33,6 +36,7 @@ const routes = [
     component: () => import('@/views/ITView.vue'),
     meta: {
       keepAlive: false,
+      auth: false,
     },
   },
   {
@@ -41,6 +45,7 @@ const routes = [
     component: () => import('@/views/MessageView.vue'),
     meta: {
       keepAlive: false,
+      auth: false,
     },
   },
   {
@@ -49,6 +54,7 @@ const routes = [
     component: () => import('@/views/ArticleView.vue'),
     meta: {
       keepAlive: false,
+      auth: false,
     },
   },
   {
@@ -59,14 +65,23 @@ const routes = [
       {
         path: 'login',
         component: () => import('@/views/LoginView.vue'),
+        meta: {
+          keepAlive: true,
+          auth: false,
+        },
       },
       {
         path: 'register',
         component: () => import('@/views/RegisterView.vue'),
+        meta: {
+          keepAlive: true,
+          auth: false,
+        },
       },
     ],
     meta: {
-      keepAlive: true,
+      keepAlive: false,
+      auth: false,
     },
   },
   {
@@ -75,6 +90,25 @@ const routes = [
     component: () => import('@/views/WriterView.vue'),
     meta: {
       keepAlive: true,
+      auth: false,
+    },
+  },
+  {
+    path: '/setting',
+    name: 'setting',
+    component: () => import('@/views/SettingView.vue'),
+    meta: {
+      keepAlive: false,
+      auth: true,
+    },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notfound',
+    component: () => import('@/views/NotFoundView.vue'),
+    meta: {
+      keepAlive: false,
+      auth: true,
     },
   },
 ]
@@ -92,6 +126,12 @@ router.beforeEach((to) => {
     }
     if (to.fullPath === '/user') {
       return '/user/login'
+    }
+  }
+  // 去的路径需要登录
+  if (to.meta.auth) {
+    if (!store.state.user.isLogin) {
+      return false
     }
   }
 })

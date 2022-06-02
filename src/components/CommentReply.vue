@@ -46,7 +46,7 @@ const value = ref('')
       background-color: #ec7259;
       box-sizing: content-box;
       padding: 4px 12px;
-      width: 28px;
+      // width: 28px;
       height: 20px;
       border-radius: 15px;
       line-height: 20px;
@@ -62,7 +62,7 @@ const value = ref('')
     .cancel {
       box-sizing: content-box;
       padding: 4px 12px;
-      width: 28px;
+      // width: 28px;
       height: 20px;
       border-radius: 15px;
       line-height: 20px;

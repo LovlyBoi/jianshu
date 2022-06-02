@@ -1,7 +1,7 @@
 <template>
   <div class="user-card">
     <div class="avatar">
-      <a-avatar :src="avatar" :size="52" />
+      <a-avatar :src="$store.state.user.avatar" :size="52" />
     </div>
     <div class="user-pannel">
       <div class="user-title">{{ username }}</div>
