@@ -3,7 +3,7 @@ let BASEURL = ''
 
 if (process.env.NODE_ENV === 'production') {
   TIMEOUT = 200000
-  BASEURL = ''
+  BASEURL = 'http://123.57.238.32:10000/n/'
 } else if (process.env.NODE_ENV === 'development') {
   TIMEOUT = 200000
   BASEURL = '/api'

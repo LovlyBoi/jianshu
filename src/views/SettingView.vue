@@ -4,7 +4,16 @@
       <div class="setting-pannel">
         <div class="setting-avatar">
           <a-avatar :size="80" :src="$store.state.user.avatar"></a-avatar>
-          <button class="upload" @click="uploadAvatar">更换头像</button>
+          <label class="upload" for="file-uploader">
+            更改头像
+            <input
+              style="display: none"
+              type="file"
+              id="file-uploader"
+              accept="image/gif, image/jpeg, image/x-png, image/jpg, image/*"
+              @change="uploadAvatar"
+            />
+          </label>
         </div>
         <div class="setting-list">
           <SettingItem label="用户名">
@@ -19,22 +28,41 @@
 <script setup>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { modifyUsername, modifyAvatar } from '@/api'
 import SettingItem from '@/components/SettingItem.vue'
 import CustomInput from '@/components/CustomInput.vue'
+import { message } from 'ant-design-vue'
 
 const store = useStore()
 
 const username = ref(store.state.user.username)
 
-function handleChangeName() {
-  if (username.value !== store.state.user.username) {
-    console.log(username.value)
+async function handleChangeName() {
+  if (username.value === store.state.user.username) {
+    return
   }
+  const nextName = username.value
+  const id = store.state.user.userId
   // 更改用户名：检查一不一样，不一样再发送到服务器，拿到返回的结果之后，改 state，改 localStorage
+  const result = await modifyUsername(nextName, id)
+  console.log(result)
+  if (result instanceof Error) {
+    message.error('修改失败')
+  } else {
+    message.success('修改成功')
+    store.commit('changeUserInfo', { username: result.username })
+  }
 }
 
-function uploadAvatar() {
-  console.log('changeAvatar!')
+async function uploadAvatar(e) {
+  const avatar = e.target.files[0]
+  const result = await modifyAvatar(store.state.user.userId, avatar)
+  if (result instanceof Error) {
+    message.error('上传失败')
+  } else {
+    message.success('修改成功')
+    store.commit('changeUserInfo', { avatar: result.url })
+  }
 }
 </script>
 
@@ -48,7 +76,6 @@ function uploadAvatar() {
     .setting-pannel {
       width: 100%;
       padding: 40px;
-      height: 400px;
       border-radius: 8px;
       background-color: var(--blog-card-bgcolor);
 
@@ -64,6 +91,7 @@ function uploadAvatar() {
           height: 24px;
           border-radius: 13px;
           line-height: 24px;
+          padding: 0 10px;
           cursor: pointer;
 
           &:hover {

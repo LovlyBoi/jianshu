@@ -35,8 +35,12 @@
       <div class="user" v-if="isLogin">
         <div class="avatar">
           <div class="avatar-container">
-            <img :src="store.state.user.avatar" alt="用户头像" />
+            <a-avatar :size="40" :src="store.state.user.avatar" alt="用户头像"></a-avatar>
           </div>
+
+          <!-- <div class="avatar-container">
+            <img :src="store.state.user.avatar" alt="用户头像" />
+          </div> -->
         </div>
         <ul class="avatar-popup">
           <li class="popup-item">
@@ -225,9 +229,9 @@ async function handlePublish() {
       }
 
       .avatar-container {
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
+        // width: 40px;
+        // height: 40px;
+        // border-radius: 20px;
         cursor: pointer;
         overflow: hidden;
 
