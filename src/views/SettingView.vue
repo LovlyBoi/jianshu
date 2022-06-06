@@ -39,6 +39,7 @@ const username = ref(store.state.user.username)
 
 async function handleChangeName() {
   if (username.value === store.state.user.username) {
+    console.log(username.value, store.state.user.username)
     return
   }
   const nextName = username.value

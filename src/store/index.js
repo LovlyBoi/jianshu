@@ -45,6 +45,8 @@ export default createStore({
       let { username, avatar } = payload
       username ??= state.user.username
       avatar ??= state.user.avatar
+      state.user.username = username
+      state.user.avatar = avatar
       const user = {
         userId: state.user.userId,
         username,

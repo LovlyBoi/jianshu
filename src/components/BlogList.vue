@@ -16,7 +16,7 @@ getBlogs(10, 0)
     blogs.value = res
   })
   .catch((err) => {
-    console.log(err)
+    console.log('获取博客失败', err)
   })
 </script>
 
