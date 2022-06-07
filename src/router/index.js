@@ -5,6 +5,9 @@ import MemberView from '@/views/MemberView.vue'
 import ITView from '@/views/ITView.vue'
 import MessageView from '@/views/MessageView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import CallUsView from '@/views/CallUsView.vue'
+import AboutUsView from '@/views/AboutUsView.vue'
+import DescriptionView from '@/views/DescriptionView.vue'
 import MainView from '../views/MainView.vue'
 
 const routes = [
@@ -30,6 +33,33 @@ const routes = [
     path: '/member',
     name: 'member',
     component: MemberView,
+    meta: {
+      keepAlive: false,
+      auth: false,
+    },
+  },
+  {
+    path: '/aboutUs',
+    name: 'aboutUs',
+    component: AboutUsView,
+    meta: {
+      keepAlive: false,
+      auth: false,
+    },
+  },
+  {
+    path: '/callUs',
+    name: 'callUs',
+    component: CallUsView,
+    meta: {
+      keepAlive: false,
+      auth: false,
+    },
+  },
+  {
+    path: '/description',
+    name: 'description',
+    component: DescriptionView,
     meta: {
       keepAlive: false,
       auth: false,
