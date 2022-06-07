@@ -1,5 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '@/store'
+import FollowView from '@/views/FollowView.vue'
+import MemberView from '@/views/MemberView.vue'
+import ITView from '@/views/ITView.vue'
+import MessageView from '@/views/MessageView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 import MainView from '../views/MainView.vue'
 
 const routes = [
@@ -15,7 +20,7 @@ const routes = [
   {
     path: '/follow',
     name: 'follow',
-    component: () => import('@/views/FollowView.vue'),
+    component: FollowView,
     meta: {
       keepAlive: false,
       auth: false,
@@ -24,7 +29,7 @@ const routes = [
   {
     path: '/member',
     name: 'member',
-    component: () => import('@/views/MemberView.vue'),
+    component: MemberView,
     meta: {
       keepAlive: false,
       auth: false,
@@ -33,7 +38,7 @@ const routes = [
   {
     path: '/it',
     name: 'it',
-    component: () => import('@/views/ITView.vue'),
+    component: ITView,
     meta: {
       keepAlive: false,
       auth: false,
@@ -42,7 +47,7 @@ const routes = [
   {
     path: '/message',
     name: 'message',
-    component: () => import('@/views/MessageView.vue'),
+    component: MessageView,
     meta: {
       keepAlive: false,
       auth: false,
@@ -51,7 +56,12 @@ const routes = [
   {
     path: '/article/:id',
     name: 'article',
-    component: () => import('@/views/ArticleView.vue'),
+    component: () =>
+      import(
+        /* webpackChunkName: 'ArticleView' */
+        /* webpackPrefetch: true */
+        '@/views/ArticleView.vue'
+      ),
     meta: {
       keepAlive: false,
       auth: false,
@@ -60,11 +70,21 @@ const routes = [
   {
     path: '/user',
     name: 'user',
-    component: () => import('@/views/UserView.vue'),
+    component: () =>
+      import(
+        /* webpackChunkName: 'UserView' */
+        /* webpackPrefetch: true */
+        '@/views/UserView.vue'
+      ),
     children: [
       {
         path: 'login',
-        component: () => import('@/views/LoginView.vue'),
+        component: () =>
+          import(
+            /* webpackChunkName: 'LoginView' */
+            /* webpackPrefetch: true */
+            '@/views/LoginView.vue'
+          ),
         meta: {
           keepAlive: true,
           auth: false,
@@ -72,7 +92,12 @@ const routes = [
       },
       {
         path: 'register',
-        component: () => import('@/views/RegisterView.vue'),
+        component: () =>
+          import(
+            /* webpackChunkName: 'RegisterView' */
+            /* webpackPrefetch: true */
+            '@/views/RegisterView.vue'
+          ),
         meta: {
           keepAlive: true,
           auth: false,
@@ -87,7 +112,11 @@ const routes = [
   {
     path: '/writer',
     name: 'writer',
-    component: () => import('@/views/WriterView.vue'),
+    component: () =>
+      import(
+        /* webpackChunkName: 'WriterView' */
+        '@/views/WriterView.vue'
+      ),
     meta: {
       keepAlive: true,
       auth: false,
@@ -96,7 +125,11 @@ const routes = [
   {
     path: '/setting',
     name: 'setting',
-    component: () => import('@/views/SettingView.vue'),
+    component: () =>
+      import(
+        /* webpackChunkName: 'SettingView' */
+        '@/views/SettingView.vue'
+      ),
     meta: {
       keepAlive: false,
       auth: true,
@@ -105,7 +138,7 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'notfound',
-    component: () => import('@/views/NotFoundView.vue'),
+    component: NotFoundView,
     meta: {
       keepAlive: false,
       auth: true,
